@@ -6,9 +6,7 @@ settings:
 
 importers:
 
-  .: {}
-
-  apps/day-neramit:
+  .:
     dependencies:
       next:
         specifier: 16.2.10
