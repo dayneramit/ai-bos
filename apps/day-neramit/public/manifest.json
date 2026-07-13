@@ -1,0 +1,24 @@
+{
+  "name": "AI-BOS Document Studio | Day Neramit",
+  "short_name": "Day Neramit",
+  "description": "ออกใบเสนอราคา ใบเสร็จรับเงิน/ใบรับเงิน และใบรับประกัน สไตล์ Luxury Gold-Black สำหรับ Day Neramit",
+  "start_url": "/quotation",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#050505",
+  "theme_color": "#0a0a0a",
+  "lang": "th",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "finance"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "สร้างใบเสนอราคา", "url": "/quotation/new" },
+    { "name": "สร้างใบเสร็จ/ใบรับเงิน", "url": "/receipt/new" },
+    { "name": "สร้างใบรับประกัน", "url": "/warranty/new" }
+  ]
+}

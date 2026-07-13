@@ -1,0 +1,23 @@
+rules_version = '2';
+
+// Mirrors the Firestore company-membership model: assets live under
+// /companies/{companyId}/... and only members of that company may
+// read or write them.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isMember(companyId) {
+      return isSignedIn() &&
+        firestore.exists(/databases/(default)/documents/companies/$(companyId)/members/$(request.auth.uid));
+    }
+
+    match /companies/{companyId}/{allPaths=**} {
+      allow read, write: if isMember(companyId);
+    }
+  }
+}

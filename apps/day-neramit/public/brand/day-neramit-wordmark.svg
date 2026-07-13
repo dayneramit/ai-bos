@@ -1,0 +1,17 @@
+<svg width="640" height="160" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldW" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f6e9c7"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#a9821b"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="160" rx="20" fill="#050505"/>
+  <g transform="translate(34,26)">
+    <path d="M-2 106 L-2 34 C-2 6 20 -18 50 -18 L58 -18 C88 -18 110 6 110 34 L110 106"
+          fill="none" stroke="url(#goldW)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="54" cy="106" r="7" fill="url(#goldW)"/>
+  </g>
+  <text x="170" y="78" font-family="'Prompt','Sarabun',sans-serif" font-weight="700" font-size="44" fill="url(#goldW)" letter-spacing="1">DAY NERAMIT</text>
+  <text x="170" y="108" font-family="'Sarabun',sans-serif" font-weight="500" font-size="17" fill="#e8c468" letter-spacing="4" opacity="0.85">ช่างเดย์ เนรมิต • บริการซ่อมบำรุงครบวงจร</text>
+</svg>

@@ -1,0 +1,10 @@
+[build]
+  base = "apps/day-neramit"
+  command = "cd ../.. && pnpm install --frozen-lockfile && pnpm --filter day-neramit build"
+  publish = "apps/day-neramit/.next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

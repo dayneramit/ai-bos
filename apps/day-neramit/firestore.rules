@@ -1,0 +1,59 @@
+rules_version = '2';
+
+// ==========================================================
+// AI-BOS Document Studio — Firestore data model
+//
+// /companies/{companyId}
+// /companies/{companyId}/members/{uid}        -> { role: "owner" | "staff" }
+// /companies/{companyId}/customers/{customerId}
+// /companies/{companyId}/documents/{documentId}  -> Quotation | Invoice |
+//                                                    Receipt | WarrantyCertificate
+//                                                    (discriminated by `type`)
+//
+// Every document is scoped under the company that owns it. A user can only
+// read/write a company's data if they are a member of that company.
+// ==========================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isMember(companyId) {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/companies/$(companyId)/members/$(request.auth.uid));
+    }
+
+    function memberRole(companyId) {
+      return get(/databases/$(database)/documents/companies/$(companyId)/members/$(request.auth.uid)).data.role;
+    }
+
+    function isOwner(companyId) {
+      return isMember(companyId) && memberRole(companyId) == "owner";
+    }
+
+    match /companies/{companyId} {
+      allow read: if isMember(companyId);
+      allow create: if isSignedIn();
+      allow update: if isMember(companyId);
+      allow delete: if isOwner(companyId);
+
+      match /members/{uid} {
+        allow read: if isMember(companyId);
+        allow write: if isOwner(companyId);
+      }
+
+      match /customers/{customerId} {
+        allow read, create, update: if isMember(companyId);
+        allow delete: if isOwner(companyId);
+      }
+
+      match /documents/{documentId} {
+        allow read, create, update: if isMember(companyId);
+        allow delete: if isOwner(companyId);
+      }
+    }
+  }
+}

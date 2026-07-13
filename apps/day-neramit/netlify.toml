@@ -1,0 +1,13 @@
+[build]
+  base = "apps/day-neramit"
+  command = "cd ../.. && pnpm install --frozen-lockfile && pnpm --filter day-neramit build"
+  publish = "apps/day-neramit/.next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PRIVATE_TARGET = "server"
+
+# Official Next.js runtime plugin — handles SSR/ISR routing, image
+# optimization, and the App Router automatically on Netlify.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
