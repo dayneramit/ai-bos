@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Prompt, Sarabun } from "next/font/google";
 import { ServiceWorkerRegister } from "@/components/pwa/ServiceWorkerRegister";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const prompt = Prompt({
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-doc-paper-muted">
         <ServiceWorkerRegister />
         {children}
+        <Analytics />
       </body>
     </html>
   );
